@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html ng-app="master">
+<head>
+    <meta charset="utf-8" />
+    <title>Master Data</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/app.js"></script>
+</head>
+<body class="container" ng-controller="masterController">
+    <div ng-if="error">{{error}}</div>
+    <form>
+        <table border="0" cellpadding="3" width="70%">
+            <tr>
+                <td class="form-label" colspan="3"><h3>Employee Registration</h3></td>
+            </tr>
+            <tr>
+                <td class="form-label" colspan="3">Name</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="fName" placeholder="First Name" ng-model="employee.FirstName">
+                    </div>
+                </td>
+
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="fName" placeholder="Middle Name" ng-model="employee.MiddleName">
+                    </div>
+                </td>
+            
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="fName" placeholder="Last Name" ng-model="employee.LastName">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">Gender</td>
+                <td class="form-label">Date Of Birth</td>
+                <td class="form-label">Marital Status</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="gender" ng-model="employee.Gender">
+                    </div>
+                </td>
+
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="dob" ng-model="employee.DateOfBirth">
+                    </div>
+                </td>
+
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="maritalstatus" ng-model="employee.MaritalStatus">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label" colspan="2">Address</td>
+                <td class="form-label">City</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="form-group">
+                        <textarea placeholder="Enter your door no, street info" class="form-control" ng-model="employee.Address"></textarea>
+                    </div>
+                </td>
+
+                <td valign="top">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="employee.City">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-default" ng-click="(action == 'Create')?saveEmployee():updateEmployee()">{{action}}</button>
+        <button type="button" class="btn btn-default" ng-click="clear()">Clear</button>
+    </form>
+    <br />
+    <h3>Employee List</h3> 
+    <table class="table table-striped">
+        <tr>
+            <td>First Name</td>
+            <td>Middle Name</td>
+            <td>Last Name</td>
+            <td>Gender</td>
+            <td>Date Of Birth</td>
+            <td>Marital Status</td>
+            <td>Address</td>
+            <td>City</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr ng-repeat="employee in employees">
+            <td>{{ employee.FirstName }}</td>
+            <td>{{ employee.MiddleName }}</td>
+            <td>{{ employee.LastName }}</td>
+            <td>{{ employee.Gender }}</td>
+            <td>{{ employee.DateOfBirth }}</td>
+            <td>{{ employee.MaritalStatus }}</td>
+            <td>{{ employee.Address }}</td>
+            <td>{{ employee.City }}</td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-default" ng-click="editEmployee(employee.Id)">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default" ng-click="removeEmployee(employee)">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
